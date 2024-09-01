@@ -1,22 +1,27 @@
 package com.javaspring.springbootfirstapp;
+import java.util.UUID;
 
 public class staff {
     private String staffName;
     private String staffId;
     private String staffPosition;
     private int staffAge;
-    private int staffSalary;
+    private double staffSalary;
 
-    public staff(String staffName, String staffId, String staffPosition, int staffAge, int staffSalary) {
+    public staff() {
+    }
+
+    public staff(String staffName, String staffId, String staffPosition, int staffAge, double staffSalary) {
         this.staffName = staffName;
-        this.staffId = staffId;
+        this.staffId = UUID.randomUUID().toString();
         this.staffPosition = staffPosition;
         this.staffAge = staffAge;
         this.staffSalary = staffSalary;
     }
 
+    // Getters and setters
     public String getStaffName() {
-        return this.staffName;
+        return staffName;
     }
 
     public void setStaffName(String staffName) {
@@ -24,7 +29,7 @@ public class staff {
     }
 
     public String getStaffId() {
-        return this.staffId;
+        return staffId;
     }
 
     public void setStaffId(String staffId) {
@@ -32,7 +37,7 @@ public class staff {
     }
 
     public String getStaffPosition() {
-        return this.staffPosition;
+        return staffPosition;
     }
 
     public void setStaffPosition(String staffPosition) {
@@ -40,20 +45,18 @@ public class staff {
     }
 
     public int getStaffAge() {
-        return this.staffAge;
+        return staffAge;
     }
 
     public void setStaffAge(int staffAge) {
         this.staffAge = staffAge;
     }
 
-    public int getStaffSalary() {
-        return this.staffSalary;
+    public double getStaffSalary() {
+        return staffSalary;
     }
 
-    public void setStaffSalary(int staffSalary) {
+    public void setStaffSalary(double staffSalary) {
         this.staffSalary = staffSalary;
     }
 }
-
-    

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff List</title>
+
+</head>
+
+
+<body>
+    <h1>Add New Staff</h1>
+    <form method="post" th:object="${staff}" th:action="@{/dataSubmitForm}">
+        <label for="staffName">Name:</label>
+        <input type="text" id="staffName" placeholder="staffName" th:field="*{staffName}" /><br/>
+
+        <label for="staffId">ID:</label>
+        <input type="text" id="staffId" placeholder="staffId" th:field="*{staffId}" /><br/>
+
+        <label for="staffPosition">Position:</label>
+        <input type="text" id="staffPosition" placeholder="staffPosition" th:field="*{staffPosition}" /><br/>
+
+        <label for="staffAge">Age:</label>
+        <input type="number" id="staffAge" placeholder="staffAge" th:field="*{staffAge}" /><br/>
+
+        <label for="staffSalary">Salary:</label>
+        <input type="number" id="staffSalary" placeholder="staffSalary" th:field="*{staffSalary}" /><br/>
+
+        <button type="submit" value="submit">Add Staff</button>
+    </form>
+</body>
+
+</html>
