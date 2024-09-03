@@ -1,6 +1,5 @@
 package com.javaspring.springbootfirstapp;
-import java.util.UUID;
-
+import java.util.UUID;//importing UUID class for having a raindom id for staff
 public class staff {
     private String staffName;
     private String staffId;
@@ -8,16 +7,9 @@ public class staff {
     private int staffAge;
     private double staffSalary;
 
-    public staff() {
-    }
+    
 
-    public staff(String staffName, String staffId, String staffPosition, int staffAge, double staffSalary) {
-        this.staffName = staffName;
-        this.staffId = UUID.randomUUID().toString();
-        this.staffPosition = staffPosition;
-        this.staffAge = staffAge;
-        this.staffSalary = staffSalary;
-    }
+   
 
     // Getters and setters
     public String getStaffName() {
@@ -35,6 +27,11 @@ public class staff {
     public void setStaffId(String staffId) {
         this.staffId = staffId;
     }
+    public staff() {
+        this.staffId = UUID.randomUUID().toString();
+       
+    }
+    
 
     public String getStaffPosition() {
         return staffPosition;

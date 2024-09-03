@@ -35,7 +35,7 @@
         <thead>
             <tr>
                 <th>Staff Name</th>
-                <th>Staff ID</th>
+                <th>Update</th>
                 <th>Staff Position</th>
                 <th>Staff Age</th>
                 <th>Staff Salary ($)</th>
@@ -45,10 +45,13 @@
 
             <tr th:each="oneStaff : ${staff}">
                 <td th:text="${oneStaff.staffName}"></td>
-                <td th:text="${oneStaff.staffId}"></td>
+                <td>
+                    <a role="button" th:href="@{/(staffId=${oneStaff.staffId})}"> Edit</a>
+                </td>
                 <td th:text="${oneStaff.staffPosition}"></td>
                 <td th:text="${oneStaff.staffAge}"></td>
                 <td th:text="${oneStaff.staffSalary}"></td>
+
             </tr>
         </tbody>
     </table>

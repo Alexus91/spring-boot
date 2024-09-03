@@ -11,14 +11,13 @@
 </head>
 
 
-<body>
-    <h1>Add New Staff</h1>
+
+<div class="center-screen">
     <form method="post" th:object="${staff}" th:action="@{/dataSubmitForm}">
         <label for="staffName">Name:</label>
         <input type="text" id="staffName" placeholder="staffName" th:field="*{staffName}" /><br/>
 
-        <label for="staffId">ID:</label>
-        <input type="text" id="staffId" placeholder="staffId" th:field="*{staffId}" /><br/>
+        <input type="hidden" th:field="*{staffId}" /><br/>
 
         <label for="staffPosition">Position:</label>
         <input type="text" id="staffPosition" placeholder="staffPosition" th:field="*{staffPosition}" /><br/>
@@ -31,6 +30,7 @@
 
         <button type="submit" value="submit">Add Staff</button>
     </form>
-</body>
+</div>
+
 
 </html>
