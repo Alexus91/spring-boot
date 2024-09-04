@@ -1,19 +1,25 @@
-package com.javaspring.springbootfirstapp;
+package com.javaspring.springbootfirstapp.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.javaspring.springbootfirstapp.Constants;
+import com.javaspring.springbootfirstapp.repository.staffrepository;
+import com.javaspring.springbootfirstapp.staff;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class StaffController {
 
-    List<staff> allStaff = new ArrayList<>();
 
+    staffrepository staffrepository = new staffrepository();
     @GetMapping("/")
     public String addNewStaff(Model model,@RequestParam(required=false) String staffId){
         staff staff = new staff(); //empty
@@ -21,15 +27,15 @@ public class StaffController {
         
         //if index is -1, then staff is empty
         //if index is not -1, then staff is not empty
-        model.addAttribute("staff",index == Constants.NO_MATCH ?staff: allStaff.get(index));
+        model.addAttribute("staff",index == Constants.NO_MATCH ?staff: staffrepository.getstaffindex(index));
         return "addnewstaff";
     
     }
     //get index of staff
     //if staffId is not found, return -1
     public int getstaffindex(String staffId){
-        for(int i = 0; i < allStaff.size(); i++){
-            if(allStaff.get(i).getStaffId().equals(staffId)){
+        for(int i = 0; i < staffrepository.getAllStaff().size(); i++){
+            if(staffrepository.getstaffindex(i).getStaffId().equals(staffId)){
                 return i;
             }
         }
@@ -37,21 +43,28 @@ public class StaffController {
     }
 
     @PostMapping("/dataSubmitForm")
-    public String dataSubmitForm(staff staff) {
+    // @Valid is used to validate the form data binding result is used to store the result of validation !!!
+    public String dataSubmitForm(@Valid @ModelAttribute ("staff") staff staff, BindingResult result  ){ 
+        
+        
+        //if result has errors, return addnewstaff
+        if(result.hasErrors()){
+            return "addnewstaff";
+        }
         
         int index = getstaffindex(staff.getStaffId()); //get index of staff
         
         if(index == Constants.NO_MATCH){     //if staff is empty then add staff to allStaff
-            allStaff.add(staff);
+            staffrepository.addstaff(staff);
         }else{ // if staff is not empty then update staff in allStaff
-            allStaff.set(index, staff);
-        }
+            staffrepository.setstaff(index, staff);       }
         return "redirect:/getAllstaff"; 
+    
     }
 
     @GetMapping("/getAllstaff")
-    public String getStaff(Model model) {
-        model.addAttribute("staff", allStaff); //add allStaff to model 
+    public String getAllStaff(Model model) {
+        model.addAttribute("staff", staffrepository.getAllStaff());
         return "getAllstaff";
     }
 }

@@ -1,11 +1,16 @@
 package com.javaspring.springbootfirstapp;
 import java.util.UUID;//importing UUID class for having a raindom id for staff
+
+import jakarta.validation.constraints.NotBlank;
 public class staff {
+    @NotBlank(message = "Name is mandatory")
     private String staffName;
-    private String staffId;
+    @NotBlank(message = "Position is mandatory")
     private String staffPosition;
     private int staffAge;
     private double staffSalary;
+    private String staffId;
+
 
     
 
