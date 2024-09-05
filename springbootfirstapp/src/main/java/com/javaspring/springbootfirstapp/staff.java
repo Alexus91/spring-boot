@@ -11,11 +11,6 @@ public class staff {
     private double staffSalary;
     private String staffId;
 
-
-    
-
-   
-
     // Getters and setters
     public String getStaffName() {
         return staffName;
